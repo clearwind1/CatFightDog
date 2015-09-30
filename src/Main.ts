@@ -51,7 +51,8 @@ class Main extends egret.DisplayObjectContainer {
         //RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         //RES.loadConfig("resource/resource.json", "resource/");
 
-        this.stage.addChild(new GameUtil.LoadingPanel(this.createGameScene,this));
+        GameUtil.GameScene.init(this.stage);
+        GameUtil.GameScene.runscene(new GameUtil.LoadingPanel(this.createGameScene,this));
 
     }
     //
@@ -126,8 +127,6 @@ class Main extends egret.DisplayObjectContainer {
         //var bg:egret.Bitmap = this.createBitmapByName("bgImage");
         //this.addChild(bg);
 
-
-        GameUtil.GameScene.init(this.stage);
         GameUtil.GameScene.runscene(new fighter.GameStartScene());
 
 

@@ -1,12 +1,15 @@
 [
 	"GameUtils/BassPanel.ts",
-	"Fighter/DiamodSprite.ts",
-	"GameUtils/Animation.ts",
 	"GameUtils/utils.ts",
 	"Fighter/GameScene.ts",
 	"GameUtils/Menu.ts",
-	"LoadingUI.ts",
+	"Fighter/GameConfig.ts",
 	"Fighter/GameStartScene.ts",
+	"LoadingUI.ts",
+	"Fighter/DiamodSprite.ts",
+	"Fighter/FighterPanel.ts",
+	"GameUtils/Animation.ts",
 	"GameUtils/LoadingPanel.ts",
+	"Fighter/DiamodFightScene.ts",
 	"Main.ts"
 ]

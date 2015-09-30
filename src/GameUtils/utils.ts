@@ -4,11 +4,11 @@
 module GameUtil
 {
 
-    export function getIP():string
+    //游戏配置
+    export class GameConfig
     {
-        var IP:string = "192.168.0.1";
-        IP = "httpbin.org/";
-        return IP;
+        public static IP:string = "localhost:8080/";        //http连接地址
+        public static bRunFPS:boolean = false;              //是否显示FPS
     }
 
     /*

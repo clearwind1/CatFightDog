@@ -1,12 +1,15 @@
 var game_file_list = [
 	"GameUtils/BassPanel.js",
-	"Fighter/DiamodSprite.js",
-	"GameUtils/Animation.js",
 	"GameUtils/utils.js",
 	"Fighter/GameScene.js",
 	"GameUtils/Menu.js",
-	"LoadingUI.js",
+	"Fighter/GameConfig.js",
 	"Fighter/GameStartScene.js",
+	"LoadingUI.js",
+	"Fighter/DiamodSprite.js",
+	"Fighter/FighterPanel.js",
+	"GameUtils/Animation.js",
 	"GameUtils/LoadingPanel.js",
+	"Fighter/DiamodFightScene.js",
 	"Main.js"
 ];

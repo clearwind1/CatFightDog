@@ -3,12 +3,17 @@
  */
 var GameUtil;
 (function (GameUtil) {
-    function getIP() {
-        var IP = "192.168.0.1";
-        IP = "httpbin.org/";
-        return IP;
-    }
-    GameUtil.getIP = getIP;
+    //游戏配置
+    var GameConfig = (function () {
+        function GameConfig() {
+        }
+        var __egretProto__ = GameConfig.prototype;
+        GameConfig.IP = "localhost:8080/"; //http连接地址
+        GameConfig.bRunFPS = false; //是否显示FPS
+        return GameConfig;
+    })();
+    GameUtil.GameConfig = GameConfig;
+    GameConfig.prototype.__class__ = "GameUtil.GameConfig";
     /*
     *根据图片名据创建位图
     */

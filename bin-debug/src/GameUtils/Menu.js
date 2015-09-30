@@ -15,6 +15,7 @@ var GameUtil;
             _super.call(this);
             this.menuNormalTexture = null;
             this.menuSelectTexture = null;
+            this.bScaleMode = false;
             this.thisObj = context;
             this.param = param;
             this.init(normal, select, backFun);
@@ -35,9 +36,15 @@ var GameUtil;
             this.addEventListener(egret.TouchEvent.TOUCH_END, this.TouchEnd, this);
             this.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.TouchCancel, this);
         };
+        __egretProto__.setScaleMode = function () {
+            this.bScaleMode = true;
+        };
         __egretProto__.TouchBegin = function (event) {
             //console.log("touchbegin");
             this.btnImg.texture = this.menuSelectTexture;
+            if (this.bScaleMode) {
+                this.btnImg.scaleX = this.btnImg.scaleY = 0.9;
+            }
         };
         __egretProto__.TouchMove = function (event) {
             //console.log("touchmove");
@@ -45,11 +52,17 @@ var GameUtil;
         __egretProto__.TouchEnd = function (event) {
             //console.log("touchend");
             this.btnImg.texture = this.menuNormalTexture;
+            if (this.bScaleMode) {
+                this.btnImg.scaleX = this.btnImg.scaleY = 1;
+            }
             this.backFun.apply(this.thisObj, this.param);
         };
         __egretProto__.TouchCancel = function (event) {
             //console.log("touchcancel");
             this.btnImg.texture = this.menuNormalTexture;
+            if (this.bScaleMode) {
+                this.btnImg.scaleX = this.btnImg.scaleY = 1;
+            }
         };
         return Menu;
     })(egret.DisplayObjectContainer);

@@ -29,7 +29,7 @@ var GameUtil;
             this.loadingbar.scale9Grid = rect;
             this.addChild(this.loadingbar);
             this.loadingbar.width = 10;
-            console.log("thiswidth=======", this.width);
+            //console.log("thiswidth=======",this.width);
             //egret.MainContext.instance.stage.addChild(this);
             this.loadingRes();
         };
@@ -64,8 +64,8 @@ var GameUtil;
                 RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
                 RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
                 RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
-                egret.Profiler.getInstance().run();
-                //this.createGameScene();
+                if (GameUtil.GameConfig.bRunFPS)
+                    egret.Profiler.getInstance().run();
                 this.loadedfun.apply(this.thisObj);
             }
         };
@@ -92,7 +92,7 @@ var GameUtil;
         };
         __egretProto__.setPro = function (persend) {
             this.loadingbar.width = this.loadingbar.texture.textureWidth * persend;
-            console.log("this.width=====", this.width);
+            //console.log("this.width=====",this.width);
         };
         __egretProto__.getPro = function () {
             return this.loadingbar.width / this.loadingbar.texture.textureWidth;

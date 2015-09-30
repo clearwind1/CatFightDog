@@ -51,7 +51,8 @@ var Main = (function (_super) {
         ////initiate Resource loading library
         //RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         //RES.loadConfig("resource/resource.json", "resource/");
-        this.stage.addChild(new GameUtil.LoadingPanel(this.createGameScene, this));
+        GameUtil.GameScene.init(this.stage);
+        GameUtil.GameScene.runscene(new GameUtil.LoadingPanel(this.createGameScene, this));
     };
     /**
      * 创建游戏场景
@@ -60,7 +61,6 @@ var Main = (function (_super) {
     __egretProto__.createGameScene = function () {
         //var bg:egret.Bitmap = this.createBitmapByName("bgImage");
         //this.addChild(bg);
-        GameUtil.GameScene.init(this.stage);
         GameUtil.GameScene.runscene(new fighter.GameStartScene());
         return;
         var pic = new egret.Bitmap();
