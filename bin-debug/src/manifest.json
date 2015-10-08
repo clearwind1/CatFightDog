@@ -1,6 +1,7 @@
 [
 	"GameUtils/BassPanel.ts",
 	"GameUtils/utils.ts",
+	"GameUtils/Http.ts",
 	"Fighter/GameScene.ts",
 	"GameUtils/Menu.ts",
 	"Fighter/GameConfig.ts",

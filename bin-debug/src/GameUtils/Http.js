@@ -30,7 +30,7 @@ var GameUtil;
         __egretProto__.send = function (param, file, loaded, thisObj) {
             if (loaded === void 0) { loaded = null; }
             if (thisObj === void 0) { thisObj = null; }
-            this.urlRequest.url = "Http://" + GameUtil.getIP() + file;
+            this.urlRequest.url = "Http://" + GameUtil.GameConfig.IP + file;
             this.onLoader = loaded;
             this.thisObj = thisObj;
             var urlVariables = new egret.URLVariables(GameUtil.objectToString(param));

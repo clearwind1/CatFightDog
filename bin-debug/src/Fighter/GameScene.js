@@ -20,9 +20,9 @@ var fighter;
             this.fightPanel = fighter.FighterPanel.getInstance();
             this.addChild(this.fightPanel);
             var parm = {
-                "test": "successok"
+                "q": "Json"
             };
-            //GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm,"",this.testHttpOk,this);
+            GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm, "", this.testHttpOk, this);
         };
         __egretProto__.testHttpOk = function (data) {
             console.log("data=======", data);

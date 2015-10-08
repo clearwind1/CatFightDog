@@ -28,9 +28,9 @@ module fighter {
 
 
             var parm:any = {
-                "test":"successok"
+                "q":"Json"
             };
-            //GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm,"",this.testHttpOk,this);
+            GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm,"",this.testHttpOk,this);
 
         }
 
