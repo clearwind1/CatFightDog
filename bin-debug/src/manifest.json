@@ -5,6 +5,7 @@
 	"GameUtils/Menu.ts",
 	"Fighter/GameConfig.ts",
 	"Fighter/GameStartScene.ts",
+	"GameUtils/ProgressBar.ts",
 	"LoadingUI.ts",
 	"Fighter/DiamodSprite.ts",
 	"Fighter/FighterPanel.ts",

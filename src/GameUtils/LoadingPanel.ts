@@ -14,17 +14,19 @@ module GameUtil
         private loadingbar: egret.Bitmap;
         private loadedfun: Function;
         private thisObj: any;
+        private imageUrl:string;
 
-        public constructor(fun:Function,obj:any)
+        public constructor(fun:Function,obj:any,url:string="loadingbar.png")
         {
             this.loadedfun = fun;
             this.thisObj = obj;
+            this.imageUrl = "/resource/assets/" + url;
             super();
         }
 
         public init():void
         {
-            RES.getResByUrl('/resource/assets/loadingbar.png',this.onComplete,this,RES.ResourceItem.TYPE_IMAGE);
+            RES.getResByUrl(this.imageUrl,this.onComplete,this,RES.ResourceItem.TYPE_IMAGE);
 
         }
         private onComplete(event:any):void

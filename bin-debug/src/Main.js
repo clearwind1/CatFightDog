@@ -59,10 +59,14 @@ var Main = (function (_super) {
      * Create a game scene
      */
     __egretProto__.createGameScene = function () {
-        //var bg:egret.Bitmap = this.createBitmapByName("bgImage");
-        //this.addChild(bg);
         GameUtil.GameScene.runscene(new fighter.GameStartScene());
         return;
+        /*
+        *读取josn配置文件
+         */
+        var x = RES.getRes("test_json");
+        console.log("x====", x['text']);
+        /***************************************************/
         var pic = new egret.Bitmap();
         pic.texture = RES.getRes("hero-03_png");
         pic.x = 0;

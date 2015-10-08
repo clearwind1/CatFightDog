@@ -9,14 +9,16 @@ var GameUtil;
      */
     var LoadingPanel = (function (_super) {
         __extends(LoadingPanel, _super);
-        function LoadingPanel(fun, obj) {
+        function LoadingPanel(fun, obj, url) {
+            if (url === void 0) { url = "loadingbar.png"; }
             this.loadedfun = fun;
             this.thisObj = obj;
+            this.imageUrl = "/resource/assets/" + url;
             _super.call(this);
         }
         var __egretProto__ = LoadingPanel.prototype;
         __egretProto__.init = function () {
-            RES.getResByUrl('/resource/assets/loadingbar.png', this.onComplete, this, RES.ResourceItem.TYPE_IMAGE);
+            RES.getResByUrl(this.imageUrl, this.onComplete, this, RES.ResourceItem.TYPE_IMAGE);
         };
         __egretProto__.onComplete = function (event) {
             this.y = this.mStageH - 200;

@@ -124,13 +124,18 @@ class Main extends egret.DisplayObjectContainer {
      */
     private createGameScene():void {
 
-        //var bg:egret.Bitmap = this.createBitmapByName("bgImage");
-        //this.addChild(bg);
-
         GameUtil.GameScene.runscene(new fighter.GameStartScene());
 
 
         return;
+
+        /*
+        *读取josn配置文件
+         */
+        var x: string = RES.getRes("test_json");
+        console.log("x====",x['text']);
+
+        /***************************************************/
 
         var pic:egret.Bitmap = new egret.Bitmap();
         pic.texture = RES.getRes("hero-03_png");

@@ -25,6 +25,23 @@ var GameUtil;
         return result;
     }
     GameUtil.createBitmapByName = createBitmapByName;
+    /*
+    *创建文字
+    */
+    function createTextField(x, y, size, anchorX, anchorY, align) {
+        if (anchorX === void 0) { anchorX = 0.5; }
+        if (anchorY === void 0) { anchorY = 0.5; }
+        if (align === void 0) { align = "center"; }
+        var textfiled = new egret.TextField();
+        textfiled.x = x;
+        textfiled.y = y;
+        textfiled.anchorX = anchorX;
+        textfiled.anchorY = anchorY;
+        textfiled.size = size;
+        textfiled.textAlign = align;
+        return textfiled;
+    }
+    GameUtil.createTextField = createTextField;
     /**
      * 将Object转化成 =& post字符串;
      * @param postData

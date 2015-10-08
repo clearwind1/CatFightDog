@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"bgImage,egretIcon,hero-01_png,hero-02_png,hero-03_png,hero-04_png,btn_start_png,bombeffect_json,diamod1_png,diamod2_png,diamod3_png,diamod4_png,diamod5_png,diamod6_png,endBG_png,beginBtn_press_png,beginBtn_png,sdiamod1_png,sdiamod2_png,sdiamod3_png,sdiamod4_png,sdiamod5_png,sdiamod6_png,loadingbar_png,fightBg_png,enemyblood_png,scoreFrame_png",
+		"keys":"bgImage,egretIcon,hero-01_png,hero-02_png,hero-03_png,hero-04_png,btn_start_png,bombeffect_json,diamod1_png,diamod2_png,diamod3_png,diamod4_png,diamod5_png,diamod6_png,endBG_png,beginBtn_press_png,beginBtn_png,sdiamod1_png,sdiamod2_png,sdiamod3_png,sdiamod4_png,sdiamod5_png,sdiamod6_png,loadingbar_png,fightBg_png,enemyblood_png,scoreFrame_png,test_json",
 		"name":"preload"
 	}],
 	"resources":[
@@ -145,5 +145,10 @@
 		"name":"scoreFrame_png",
 		"type":"image",
 		"url":"assets/scoreFrame.png"
+	},
+	{
+		"name":"test_json",
+		"type":"json",
+		"url":"config/test.json"
 	}]
 }

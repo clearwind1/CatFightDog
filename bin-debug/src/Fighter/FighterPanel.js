@@ -25,23 +25,13 @@ var fighter;
             scoreframe.y = 35;
             this.addChild(scoreframe);
             //分数
-            this.mScoreText = new egret.TextField();
+            this.mScoreText = GameUtil.createTextField(416, 35, 20);
             this.addChild(this.mScoreText);
-            this.mScoreText.x = 416;
-            this.mScoreText.y = 35;
-            this.mScoreText.anchorX = this.mScoreText.anchorY = 0.5;
-            this.mScoreText.size = 20;
             this.mScoreText.text = this.mScore + "";
-            this.mScoreText.textAlign = "center";
             //回合数
-            this.mCurRoundText = new egret.TextField();
+            this.mCurRoundText = GameUtil.createTextField(240, 40, 40);
             this.addChild(this.mCurRoundText);
-            this.mCurRoundText.x = 240;
-            this.mCurRoundText.y = 40;
-            this.mCurRoundText.anchorX = this.mCurRoundText.anchorY = 0.5;
-            this.mCurRoundText.size = 40;
             this.mCurRoundText.text = "Round " + this.mCurRound;
-            this.mCurRoundText.textAlign = "center";
             //创建角色
             this.createRole();
             //退出按钮
@@ -51,21 +41,11 @@ var fighter;
             exitbtn.setScaleMode();
             this.addChild(exitbtn);
             //
-            this.mHeroBlood = GameUtil.createBitmapByName("loadingbar_png");
-            this.mHeroBlood.x = 30;
-            this.mHeroBlood.y = 290;
-            var rect = new egret.Rectangle(4, 4, 292, 16);
-            this.mHeroBlood.scale9Grid = rect;
+            this.mHeroBlood = new GameUtil.ProgressBar("loadingbar_png", 30, 290, new egret.Rectangle(4, 4, 292, 16));
             this.addChild(this.mHeroBlood);
-            this.mHeroBlood.anchorX = 0;
             //
-            this.mEnemyBlood = GameUtil.createBitmapByName("enemyblood_png");
-            this.mEnemyBlood.x = this.mEnemysp.x - this.mEnemysp.texture.textureWidth / 2 + 10;
-            this.mEnemyBlood.y = this.mEnemysp.y - this.mEnemysp.texture.textureHeight / 2 - 30;
-            var erect = new egret.Rectangle(4, 4, 80.6, 16);
-            this.mEnemyBlood.scale9Grid = erect;
+            this.mEnemyBlood = new GameUtil.ProgressBar("enemyblood_png", this.mEnemysp.x - this.mEnemysp.texture.textureWidth / 2 + 10, this.mEnemysp.y - this.mEnemysp.texture.textureHeight / 2 - 30, new egret.Rectangle(4, 4, 80.6, 16));
             this.addChild(this.mEnemyBlood);
-            this.mEnemyBlood.anchorX = 0;
         };
         __egretProto__.createRole = function () {
             this.mEnemysp = GameUtil.createBitmapByName("hero-01_png");
@@ -108,8 +88,8 @@ var fighter;
             this.updateBlood();
         };
         __egretProto__.updateBlood = function () {
-            this.mHeroBlood.width = this.mHeroBlood.texture.textureWidth * (this.mHeroCurBlood / fighter.GameConfig.gHeroTotalBlood);
-            this.mEnemyBlood.width = this.mEnemyBlood.texture.textureWidth * (this.mEnemyCurBlood / fighter.GameConfig.gEnemyTotalBlood);
+            this.mHeroBlood.setPercent(this.mHeroCurBlood / fighter.GameConfig.gHeroTotalBlood);
+            this.mEnemyBlood.setPercent(this.mEnemyCurBlood / fighter.GameConfig.gEnemyTotalBlood);
         };
         FighterPanel.getInstance = function () {
             if (null == this.instance) {

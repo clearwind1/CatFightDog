@@ -5,6 +5,7 @@ var game_file_list = [
 	"GameUtils/Menu.js",
 	"Fighter/GameConfig.js",
 	"Fighter/GameStartScene.js",
+	"GameUtils/ProgressBar.js",
 	"LoadingUI.js",
 	"Fighter/DiamodSprite.js",
 	"Fighter/FighterPanel.js",

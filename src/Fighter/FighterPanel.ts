@@ -14,8 +14,8 @@ module fighter
         private mEnemysp: egret.Bitmap;         //敌人
         private mMansp: egret.Bitmap;           //男主角
         private mFemalesp: egret.Bitmap;        //女主角
-        private mHeroBlood: egret.Bitmap;       //主角血量
-        private mEnemyBlood: egret.Bitmap;      //敌人血量
+        private mHeroBlood: GameUtil.ProgressBar;       //主角血量
+        private mEnemyBlood: GameUtil.ProgressBar;      //敌人血量
 
         private mHeroCurBlood: number;             //主角当前血量
         private mEnemyCurBlood: number;           //敌人当前血量
@@ -46,24 +46,14 @@ module fighter
             this.addChild(scoreframe);
 
             //分数
-            this.mScoreText = new egret.TextField();
+            this.mScoreText = GameUtil.createTextField(416,35,20);
             this.addChild(this.mScoreText);
-            this.mScoreText.x = 416;
-            this.mScoreText.y = 35;
-            this.mScoreText.anchorX = this.mScoreText.anchorY = 0.5;
-            this.mScoreText.size = 20;
             this.mScoreText.text = this.mScore+"";
-            this.mScoreText.textAlign = "center";
 
             //回合数
-            this.mCurRoundText = new egret.TextField();
+            this.mCurRoundText = GameUtil.createTextField(240,40,40);
             this.addChild(this.mCurRoundText);
-            this.mCurRoundText.x = 240;
-            this.mCurRoundText.y = 40;
-            this.mCurRoundText.anchorX = this.mCurRoundText.anchorY = 0.5;
-            this.mCurRoundText.size = 40;
             this.mCurRoundText.text = "Round " + this.mCurRound;
-            this.mCurRoundText.textAlign = "center";
 
             //创建角色
             this.createRole();
@@ -76,22 +66,13 @@ module fighter
             this.addChild(exitbtn);
 
             //
-            this.mHeroBlood = GameUtil.createBitmapByName("loadingbar_png");
-            this.mHeroBlood.x = 30;
-            this.mHeroBlood.y = 290;
-            var rect:egret.Rectangle = new egret.Rectangle(4,4,292,16);
-            this.mHeroBlood.scale9Grid = rect;
+            this.mHeroBlood = new GameUtil.ProgressBar("loadingbar_png",30,290,new egret.Rectangle(4,4,292,16));
             this.addChild(this.mHeroBlood);
-            this.mHeroBlood.anchorX = 0;
 
             //
-            this.mEnemyBlood = GameUtil.createBitmapByName("enemyblood_png");
-            this.mEnemyBlood.x = this.mEnemysp.x - this.mEnemysp.texture.textureWidth/2 + 10;
-            this.mEnemyBlood.y = this.mEnemysp.y - this.mEnemysp.texture.textureHeight/2 - 30;
-            var erect:egret.Rectangle = new egret.Rectangle(4,4,80.6,16);
-            this.mEnemyBlood.scale9Grid = erect;
+            this.mEnemyBlood = new GameUtil.ProgressBar("enemyblood_png",this.mEnemysp.x - this.mEnemysp.texture.textureWidth/2 + 10,
+                this.mEnemysp.y - this.mEnemysp.texture.textureHeight/2 - 30,new egret.Rectangle(4,4,80.6,16));
             this.addChild(this.mEnemyBlood);
-            this.mEnemyBlood.anchorX = 0;
         }
 
         private createRole():void
@@ -153,8 +134,8 @@ module fighter
 
         private updateBlood():void
         {
-            this.mHeroBlood.width = this.mHeroBlood.texture.textureWidth*(this.mHeroCurBlood/fighter.GameConfig.gHeroTotalBlood);
-            this.mEnemyBlood.width = this.mEnemyBlood.texture.textureWidth*(this.mEnemyCurBlood/fighter.GameConfig.gEnemyTotalBlood);
+            this.mHeroBlood.setPercent(this.mHeroCurBlood/fighter.GameConfig.gHeroTotalBlood);
+            this.mEnemyBlood.setPercent(this.mEnemyCurBlood/fighter.GameConfig.gEnemyTotalBlood);
         }
 
 
