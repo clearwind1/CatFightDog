@@ -47,7 +47,7 @@ module fighter
         {
             this.downDiamod();  //宝石下落
 
-            egret.setTimeout(this.setGameState,this,400);
+           // egret.setTimeout(this.setGameState,this,400);
         }
 
         public setGameState():void
@@ -270,17 +270,18 @@ module fighter
         //处理战斗层
         private fightPanelHandler():void
         {
-            fighter.FighterPanel.getInstance().updateScoreText(this.selectdiamod.length);
-            fighter.FighterPanel.getInstance().setenemyblood(this.selectdiamod.length);
+            fighter.FighterPanel.getInstance().fightHandler(this.selectdiamod.length);
+        }
 
-            var roundc:number = fighter.FighterPanel.getInstance().getRoundCount();
-            if(roundc%3 == 0)   //每三回合攻击一次
+        public static instance: fighter.DiamodFightScene;
+        public static getInstance():fighter.DiamodFightScene
+        {
+            if(null == this.instance)
             {
-                fighter.FighterPanel.getInstance().setheroblood(10);
+                this.instance = new fighter.DiamodFightScene();
             }
 
-            fighter.FighterPanel.getInstance().updateRoundCount();
-
+            return this.instance;
         }
     }
 }

@@ -39,6 +39,20 @@ module GameUtil
     }
 
     /**
+     * 创建矩形框
+     */
+    export function createRect(x:number,y:number,width:number,height:number,alpha:number=1,color:number=0x000000):egret.Shape
+    {
+        var shp:egret.Shape = new egret.Shape();
+        shp.x = x;
+        shp.y = y;
+        shp.graphics.beginFill(color,alpha);
+        shp.graphics.drawRect(0,0,width,height);
+        shp.graphics.endFill();
+        return shp;
+    }
+
+    /**
      * 将Object转化成 =& post字符串;
      * @param postData
      * @returns {string}
@@ -53,6 +67,30 @@ module GameUtil
         }
         s = s.substr( 0, s.length - 1 );
         return s;
+    }
+
+    /**
+     * 本地文件存储
+     */
+    export function saveLocalData(key:string,data:string)
+    {
+        egret.localStorage.setItem(key,data);
+    }
+    export function readLocalData(key:string)
+    {
+        egret.localStorage.getItem(key);
+    }
+    export function clearLocalData(key:string)
+    {
+        if(key != null)
+        {
+            egret.localStorage.removeItem(key);
+        }
+        else
+        {
+            egret.localStorage.clear();
+        }
+
     }
 
 }

@@ -93,28 +93,33 @@ module fighter
             this.addChild(this.mFemalesp);
         }
 
+        //退出游戏
         private exitGame():void
         {
             GameUtil.GameScene.runscene(new fighter.GameStartScene());
         }
 
+        //获取回合数
         public getRoundCount():number
         {
             return this.mCurRound;
         }
 
+        //更新玩家分数
         public updateScoreText(diamodnum:number):void
         {
             this.mScore += diamodnum*10;
             this.mScoreText.text = this.mScore+"";
         }
 
+        //更新回合数
         public updateRoundCount():void
         {
             this.mCurRound++;
             this.mCurRoundText.text = "Round " + this.mCurRound;
         }
 
+        //设置玩家血量
         public setheroblood(hurtnum:number):void
         {
             this.mHeroCurBlood -= hurtnum;
@@ -123,6 +128,7 @@ module fighter
 
             this.updateBlood();
         }
+        //设置敌人血量
         public setenemyblood(hurtnum:number):void
         {
             this.mEnemyCurBlood -= hurtnum;
@@ -132,10 +138,89 @@ module fighter
             this.updateBlood();
         }
 
+        //更新血量
         private updateBlood():void
         {
             this.mHeroBlood.setPercent(this.mHeroCurBlood/fighter.GameConfig.gHeroTotalBlood);
             this.mEnemyBlood.setPercent(this.mEnemyCurBlood/fighter.GameConfig.gEnemyTotalBlood);
+        }
+
+
+        private fightcover: egret.Shape;    //宝石区遮罩
+        //战斗处理
+        public fightHandler(sdLength:number):void
+        {
+
+            this.fightcover = GameUtil.createRect(0,300,480,500,0.3);
+            this.addChild(this.fightcover);
+
+            //角色回合
+            var parma:any = {
+                "length":sdLength
+            };
+            var tw = egret.Tween.get(this.mMansp);
+            tw.to({x:140,y:194},700).call(this.heroRuound,this,[parma]);
+
+        }
+
+        //玩家回合动作处理
+        private heroRuound(parma:any):void
+        {
+            //console.log("length=====",parma);
+
+            var roundc:number = this.getRoundCount();
+
+            if(roundc%3 == 0)
+            {
+                var tw = egret.Tween.get(this.mMansp);
+                tw.to({x:364,y:205},700).call(this.enemyRoundStart,this);
+            }
+            else
+            {
+                var tw = egret.Tween.get(this.mMansp);
+                tw.to({x:364,y:205},700);
+            }
+
+
+            this.updateScoreText(parma['length']);
+            this.setenemyblood(parma['length']);
+
+            if(roundc%3 != 0)
+            {
+                this.updateRoundCount();
+
+                this.removeChild(this.fightcover);
+
+                fighter.DiamodFightScene.getInstance().setGameState();
+            }
+
+        }
+        //敌人动作处理
+        private enemyRoundStart():void
+        {
+            //敌人回合
+            var tw = egret.Tween.get(this.mEnemysp);
+            tw.to({x:334,y:205},700).call(this.enemyRound,this);
+        }
+        private enemyRound():void
+        {
+            var tw = egret.Tween.get(this.mEnemysp);
+            tw.to({x:111,y:194},700);
+
+            var bloodcover:egret.Shape = GameUtil.createRect(0,0,480,800,0.3,0xff0000);
+            this.addChild(bloodcover);
+            var local:any = this;
+            egret.setTimeout(function(){
+                local.removeChild(bloodcover);
+            },this,400);
+
+            this.setheroblood(10);
+
+            this.updateRoundCount();
+
+            this.removeChild(this.fightcover);
+
+            fighter.DiamodFightScene.getInstance().setGameState();
         }
 
 

@@ -15,14 +15,14 @@ var fighter;
             bg.x = this.mStageW / 2;
             bg.y = this.mStageH / 2;
             this.addChild(bg);
-            this.diamodeFightscene = new fighter.DiamodFightScene();
+            this.diamodeFightscene = fighter.DiamodFightScene.getInstance();
             this.addChild(this.diamodeFightscene);
             this.fightPanel = fighter.FighterPanel.getInstance();
             this.addChild(this.fightPanel);
             var parm = {
                 "q": "Json"
             };
-            GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm, "", this.testHttpOk, this);
+            //GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm,"",this.testHttpOk,this);
         };
         __egretProto__.testHttpOk = function (data) {
             console.log("data=======", data);

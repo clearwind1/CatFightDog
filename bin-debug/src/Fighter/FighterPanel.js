@@ -91,6 +91,54 @@ var fighter;
             this.mHeroBlood.setPercent(this.mHeroCurBlood / fighter.GameConfig.gHeroTotalBlood);
             this.mEnemyBlood.setPercent(this.mEnemyCurBlood / fighter.GameConfig.gEnemyTotalBlood);
         };
+        __egretProto__.fightHandler = function (sdLength) {
+            this.fightcover = GameUtil.createRect(0, 300, 480, 500, 0.3);
+            this.addChild(this.fightcover);
+            //角色回合
+            var parma = {
+                "length": sdLength
+            };
+            var tw = egret.Tween.get(this.mMansp);
+            tw.to({ x: 140, y: 194 }, 700).call(this.heroRuound, this, [parma]);
+        };
+        __egretProto__.heroRuound = function (parma) {
+            //console.log("length=====",parma);
+            var roundc = this.getRoundCount();
+            if (roundc % 3 == 0) {
+                var tw = egret.Tween.get(this.mMansp);
+                tw.to({ x: 364, y: 205 }, 700).call(this.enemyRoundStart, this);
+            }
+            else {
+                var tw = egret.Tween.get(this.mMansp);
+                tw.to({ x: 364, y: 205 }, 700);
+            }
+            this.updateScoreText(parma['length']);
+            this.setenemyblood(parma['length']);
+            if (roundc % 3 != 0) {
+                this.updateRoundCount();
+                this.removeChild(this.fightcover);
+                fighter.DiamodFightScene.getInstance().setGameState();
+            }
+        };
+        __egretProto__.enemyRoundStart = function () {
+            //敌人回合
+            var tw = egret.Tween.get(this.mEnemysp);
+            tw.to({ x: 334, y: 205 }, 700).call(this.enemyRound, this);
+        };
+        __egretProto__.enemyRound = function () {
+            var tw = egret.Tween.get(this.mEnemysp);
+            tw.to({ x: 111, y: 194 }, 700);
+            var bloodcover = GameUtil.createRect(0, 0, 480, 800, 0.3, 0xff0000);
+            this.addChild(bloodcover);
+            var local = this;
+            egret.setTimeout(function () {
+                local.removeChild(bloodcover);
+            }, this, 400);
+            this.setheroblood(10);
+            this.updateRoundCount();
+            this.removeChild(this.fightcover);
+            fighter.DiamodFightScene.getInstance().setGameState();
+        };
         FighterPanel.getInstance = function () {
             if (null == this.instance) {
                 this.instance = new fighter.FighterPanel();

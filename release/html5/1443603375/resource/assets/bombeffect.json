@@ -1,7 +1,0 @@
-{"file":"bombeffect.png","frames":{
-"bomb1":{"x":1,"y":1,"w":225,"h":190,"offX":0,"offY":0,"sourceW":225,"sourceH":190},
-"bomb2":{"x":228,"y":1,"w":225,"h":190,"offX":0,"offY":0,"sourceW":225,"sourceH":190},
-"bomb3":{"x":1,"y":193,"w":225,"h":190,"offX":0,"offY":0,"sourceW":225,"sourceH":190},
-"bomb4":{"x":228,"y":193,"w":225,"h":190,"offX":0,"offY":0,"sourceW":225,"sourceH":190},
-"bomb5":{"x":1,"y":385,"w":225,"h":190,"offX":0,"offY":0,"sourceW":225,"sourceH":190},
-"bomb6":{"x":228,"y":385,"w":225,"h":190,"offX":0,"offY":0,"sourceW":225,"sourceH":190}}}

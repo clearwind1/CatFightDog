@@ -36,7 +36,7 @@ var fighter;
         };
         __egretProto__.enternframe = function () {
             this.downDiamod(); //宝石下落
-            egret.setTimeout(this.setGameState, this, 400);
+            // egret.setTimeout(this.setGameState,this,400);
         };
         __egretProto__.setGameState = function () {
             this.bPause = false;
@@ -199,13 +199,13 @@ var fighter;
         };
         //处理战斗层
         __egretProto__.fightPanelHandler = function () {
-            fighter.FighterPanel.getInstance().updateScoreText(this.selectdiamod.length);
-            fighter.FighterPanel.getInstance().setenemyblood(this.selectdiamod.length);
-            var roundc = fighter.FighterPanel.getInstance().getRoundCount();
-            if (roundc % 3 == 0) {
-                fighter.FighterPanel.getInstance().setheroblood(10);
+            fighter.FighterPanel.getInstance().fightHandler(this.selectdiamod.length);
+        };
+        DiamodFightScene.getInstance = function () {
+            if (null == this.instance) {
+                this.instance = new fighter.DiamodFightScene();
             }
-            fighter.FighterPanel.getInstance().updateRoundCount();
+            return this.instance;
         };
         return DiamodFightScene;
     })(GameUtil.BassPanel);

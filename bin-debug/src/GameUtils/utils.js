@@ -43,6 +43,21 @@ var GameUtil;
     }
     GameUtil.createTextField = createTextField;
     /**
+     * 创建矩形框
+     */
+    function createRect(x, y, width, height, alpha, color) {
+        if (alpha === void 0) { alpha = 1; }
+        if (color === void 0) { color = 0x000000; }
+        var shp = new egret.Shape();
+        shp.x = x;
+        shp.y = y;
+        shp.graphics.beginFill(color, alpha);
+        shp.graphics.drawRect(0, 0, width, height);
+        shp.graphics.endFill();
+        return shp;
+    }
+    GameUtil.createRect = createRect;
+    /**
      * 将Object转化成 =& post字符串;
      * @param postData
      * @returns {string}
@@ -57,4 +72,24 @@ var GameUtil;
         return s;
     }
     GameUtil.objectToString = objectToString;
+    /**
+     * 本地文件存储
+     */
+    function saveLocalData(key, data) {
+        egret.localStorage.setItem(key, data);
+    }
+    GameUtil.saveLocalData = saveLocalData;
+    function readLocalData(key) {
+        egret.localStorage.getItem(key);
+    }
+    GameUtil.readLocalData = readLocalData;
+    function clearLocalData(key) {
+        if (key != null) {
+            egret.localStorage.removeItem(key);
+        }
+        else {
+            egret.localStorage.clear();
+        }
+    }
+    GameUtil.clearLocalData = clearLocalData;
 })(GameUtil || (GameUtil = {}));

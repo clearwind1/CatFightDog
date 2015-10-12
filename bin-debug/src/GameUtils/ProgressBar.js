@@ -23,6 +23,12 @@ var GameUtil;
             this.progressbar.anchorX = anchorX;
             this.progressbar.anchorY = anchorY;
         };
+        __egretProto__.setbarX = function (x) {
+            this.progressbar.x = x;
+        };
+        __egretProto__.setbarY = function (y) {
+            this.progressbar.y = y;
+        };
         __egretProto__.setPercent = function (percent) {
             if (percent < 0)
                 return;

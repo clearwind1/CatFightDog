@@ -20,7 +20,7 @@ module fighter {
             bg.y = this.mStageH/2;
             this.addChild(bg);
 
-            this.diamodeFightscene = new fighter.DiamodFightScene();
+            this.diamodeFightscene = fighter.DiamodFightScene.getInstance();
             this.addChild(this.diamodeFightscene);
 
             this.fightPanel = fighter.FighterPanel.getInstance();
@@ -30,7 +30,7 @@ module fighter {
             var parm:any = {
                 "q":"Json"
             };
-            GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm,"",this.testHttpOk,this);
+            //GameUtil.Http.getinstance(egret.URLRequestMethod.GET).send(parm,"",this.testHttpOk,this);
 
         }
 

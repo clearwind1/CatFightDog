@@ -132,7 +132,7 @@ class Main extends egret.DisplayObjectContainer {
         /*
         *读取josn配置文件
          */
-        var x: string = RES.getRes("test_json");
+        var x: any = RES.getRes("test_json");
         console.log("x====",x['text']);
 
         /***************************************************/
