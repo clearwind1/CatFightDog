@@ -61,36 +61,44 @@ var fighter;
             this.mFemalesp.y = 129;
             this.addChild(this.mFemalesp);
         };
+        //退出游戏
         __egretProto__.exitGame = function () {
             GameUtil.GameScene.runscene(new fighter.GameStartScene());
         };
+        //获取回合数
         __egretProto__.getRoundCount = function () {
             return this.mCurRound;
         };
+        //更新玩家分数
         __egretProto__.updateScoreText = function (diamodnum) {
             this.mScore += diamodnum * 10;
             this.mScoreText.text = this.mScore + "";
         };
+        //更新回合数
         __egretProto__.updateRoundCount = function () {
             this.mCurRound++;
             this.mCurRoundText.text = "Round " + this.mCurRound;
         };
+        //设置玩家血量
         __egretProto__.setheroblood = function (hurtnum) {
             this.mHeroCurBlood -= hurtnum;
             if (this.mHeroCurBlood <= 0)
                 this.mHeroCurBlood = 0;
             this.updateBlood();
         };
+        //设置敌人血量
         __egretProto__.setenemyblood = function (hurtnum) {
             this.mEnemyCurBlood -= hurtnum;
             if (this.mEnemyCurBlood <= 0)
                 this.mEnemyCurBlood = 0;
             this.updateBlood();
         };
+        //更新血量
         __egretProto__.updateBlood = function () {
             this.mHeroBlood.setPercent(this.mHeroCurBlood / fighter.GameConfig.gHeroTotalBlood);
             this.mEnemyBlood.setPercent(this.mEnemyCurBlood / fighter.GameConfig.gEnemyTotalBlood);
         };
+        //战斗处理
         __egretProto__.fightHandler = function (sdLength) {
             this.fightcover = GameUtil.createRect(0, 300, 480, 500, 0.3);
             this.addChild(this.fightcover);
@@ -101,6 +109,7 @@ var fighter;
             var tw = egret.Tween.get(this.mMansp);
             tw.to({ x: 140, y: 194 }, 700).call(this.heroRuound, this, [parma]);
         };
+        //玩家回合动作处理
         __egretProto__.heroRuound = function (parma) {
             //console.log("length=====",parma);
             var roundc = this.getRoundCount();
@@ -114,12 +123,14 @@ var fighter;
             }
             this.updateScoreText(parma['length']);
             this.setenemyblood(parma['length']);
+            GameUtil.numberUpDisp(this, this.mEnemysp.x, this.mEnemysp.y - this.mEnemysp.texture.textureHeight / 2, 25, "-" + parma['length'], 0xFF0000);
             if (roundc % 3 != 0) {
                 this.updateRoundCount();
                 this.removeChild(this.fightcover);
                 fighter.DiamodFightScene.getInstance().setGameState();
             }
         };
+        //敌人动作处理
         __egretProto__.enemyRoundStart = function () {
             //敌人回合
             var tw = egret.Tween.get(this.mEnemysp);
@@ -135,6 +146,7 @@ var fighter;
                 local.removeChild(bloodcover);
             }, this, 400);
             this.setheroblood(10);
+            GameUtil.numberUpDisp(this, this.mMansp.x, this.mMansp.y - this.mMansp.texture.textureHeight / 2, 25, "-" + 10, 0xFF0000);
             this.updateRoundCount();
             this.removeChild(this.fightcover);
             fighter.DiamodFightScene.getInstance().setGameState();

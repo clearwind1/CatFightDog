@@ -9,7 +9,7 @@ var GameUtil;
         }
         var __egretProto__ = GameConfig.prototype;
         GameConfig.IP = "localhost:8080/"; //http连接地址
-        GameConfig.bRunFPS = false; //是否显示FPS
+        GameConfig.bRunFPS = true; //是否显示FPS
         return GameConfig;
     })();
     GameUtil.GameConfig = GameConfig;
@@ -72,6 +72,26 @@ var GameUtil;
         return s;
     }
     GameUtil.objectToString = objectToString;
+    /**
+     * 数字上飘动画
+     */
+    function numberUpDisp(thisObj, x, y, size, number, color) {
+        var textfiled = new egret.TextField();
+        textfiled.x = x;
+        textfiled.y = y;
+        textfiled.anchorX = 0.5;
+        textfiled.anchorY = 0.5;
+        textfiled.size = size;
+        textfiled.textAlign = "center";
+        textfiled.textColor = color;
+        textfiled.text = number;
+        thisObj.addChild(textfiled);
+        egret.Tween.get(textfiled).to({ y: y - 40 }, 700);
+        egret.Tween.get(textfiled).to({ alpha: 0 }, 700).call(function () {
+            thisObj.removeChild(textfiled);
+        }, thisObj);
+    }
+    GameUtil.numberUpDisp = numberUpDisp;
     /**
      * 本地文件存储
      */

@@ -11,20 +11,20 @@ module fighter
             super();
         }
 
-        private mEnemysp: egret.Bitmap;         //敌人
-        private mMansp: egret.Bitmap;           //男主角
-        private mFemalesp: egret.Bitmap;        //女主角
+        private mEnemysp: egret.Bitmap;                 //敌人
+        private mMansp: egret.Bitmap;                   //男主角
+        private mFemalesp: egret.Bitmap;                //女主角
         private mHeroBlood: GameUtil.ProgressBar;       //主角血量
         private mEnemyBlood: GameUtil.ProgressBar;      //敌人血量
 
-        private mHeroCurBlood: number;             //主角当前血量
-        private mEnemyCurBlood: number;           //敌人当前血量
+        private mHeroCurBlood: number;                  //主角当前血量
+        private mEnemyCurBlood: number;                 //敌人当前血量
 
-        private mScoreText: egret.TextField;        //分数
-        private mScore: number;                 //当前分数
+        private mScoreText: egret.TextField;            //分数
+        private mScore: number;                         //当前分数
 
-        private mCurRoundText: egret.TextField;     //回合数
-        private mCurRound:number;               //当前回合数
+        private mCurRoundText: egret.TextField;         //回合数
+        private mCurRound:number;                       //当前回合数
 
         public init():void
         {
@@ -73,6 +73,7 @@ module fighter
             this.mEnemyBlood = new GameUtil.ProgressBar("enemyblood_png",this.mEnemysp.x - this.mEnemysp.texture.textureWidth/2 + 10,
                 this.mEnemysp.y - this.mEnemysp.texture.textureHeight/2 - 30,new egret.Rectangle(4,4,80.6,16));
             this.addChild(this.mEnemyBlood);
+
         }
 
         private createRole():void
@@ -184,6 +185,7 @@ module fighter
 
             this.updateScoreText(parma['length']);
             this.setenemyblood(parma['length']);
+            GameUtil.numberUpDisp(this,this.mEnemysp.x,this.mEnemysp.y-this.mEnemysp.texture.textureHeight/2,25,"-"+parma['length'],0xFF0000);
 
             if(roundc%3 != 0)
             {
@@ -215,6 +217,7 @@ module fighter
             },this,400);
 
             this.setheroblood(10);
+            GameUtil.numberUpDisp(this,this.mMansp.x,this.mMansp.y-this.mMansp.texture.textureHeight/2,25,"-"+10,0xFF0000);
 
             this.updateRoundCount();
 
